@@ -1,0 +1,7 @@
+.db*
+.config
+.sqlite
+.json
+.vsidx
+.wsuo
+
