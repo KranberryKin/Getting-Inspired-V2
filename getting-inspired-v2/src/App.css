@@ -5,4 +5,5 @@
 .App-header {
   min-height: 100vh;
   display: flex;
+  background-position-y: -10vh;
 }

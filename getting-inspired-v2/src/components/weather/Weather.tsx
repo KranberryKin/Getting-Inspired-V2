@@ -113,7 +113,7 @@ const _ErrorFunction = () => {
             (weatherState.forcast === "" && weatherState.state_name === "") ?
              <div  className="weather-container">
                 <div>
-                    To display Weather information, please enable geo-location for accurate displayed info. VPM's may alter results.
+                    To display Weather information, please enable geo-location for accurate displayed info. VPN's may alter results.
                 </div>
                 <div>
                     <button onClick={getGeolocation}>Activate</button>
