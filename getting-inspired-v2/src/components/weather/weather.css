@@ -1,0 +1,10 @@
+.weather-container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.751);
+}
