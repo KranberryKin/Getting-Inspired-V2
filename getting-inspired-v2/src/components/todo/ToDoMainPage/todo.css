@@ -1,0 +1,49 @@
+.todo-container{
+    display: flex;
+    flex-direction: column;
+}
+.todo-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: #000 1px solid;
+    border-radius: 15px 15px 0 0;
+    background-color: rgba(250, 235, 215, 0.874);
+    color: #000;
+}
+
+.todo-body{
+    display: block;
+    border-radius:  0 0 15px 15px;
+    color: #000;
+    border: #000 1px solid;
+    height: 28vh;
+    overflow-y: scroll;
+
+    background-color: rgba(250, 235, 215, 0.874);
+}
+.modal-container{
+    left:20vw;
+    bottom: 80vh;
+}
+.todo-form-container{
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.isComplete{
+    text-decoration: line-through;
+}
+.todo-individual-container{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.trash-icon{
+    cursor: pointer;
+}
