@@ -8,7 +8,7 @@ const randomIndex = Math.floor(Math.random() * quotes.length);
         <div>
            {quotes[randomIndex].Quote}
         </div>
-        <div>
+        <div className="author-container">
             By : {quotes[randomIndex].Author}
         </div>
     </div>)

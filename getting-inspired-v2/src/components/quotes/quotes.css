@@ -7,5 +7,28 @@
     border-radius: 20px;
     font-size: 18px;
     background-color: rgba(0, 0, 0, 0.779);
+}
 
+.quotes-container:hover .author-container {
+  visibility:visible;
+  transform: scale(1);
+  animation: popIn 0.3s ease-out forwards;
+  opacity: 1;
+}
+
+.author-container{
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
