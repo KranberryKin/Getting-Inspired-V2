@@ -1,6 +1,6 @@
 import Clock from '../clock/Clock.tsx';
 import Quotes from '../quotes/Quotes.tsx';
-import ToDo from '../todo/ToDo.tsx';
+import ToDo from '../todo/ToDoMainPage/ToDo.tsx';
 import Weather from '../weather/Weather.tsx';
 import './sectionmanager.css'
 const SectionManager = () => {
