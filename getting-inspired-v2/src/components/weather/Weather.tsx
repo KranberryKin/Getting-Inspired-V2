@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./weather.css"
 import { convertFahrenheitToKelvin } from "../../Utils/KelvinConvertion.ts";
 import { getWeatherCode, IWeatherCode } from "../../Utils/WeatherCode.ts";
+import { kelvinToF } from "../../Utils/FarenheitConvertion.ts";
 
 interface IWeatherState {
     state_name:string;
@@ -126,6 +127,9 @@ const _ErrorFunction = () => {
                 </div>
                 <div>
                     {weatherState.state_name}
+                </div>
+                <div>
+                  {kelvinToF(weatherState.tempature)} F°
                 </div>
              </div>
              }
