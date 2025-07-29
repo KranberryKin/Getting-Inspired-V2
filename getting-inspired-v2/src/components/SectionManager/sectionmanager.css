@@ -12,7 +12,7 @@
     color: #ffffff;
 }
 
-.clock-section{
+.clock-section {
     display: flex;
     flex-direction: row;
     justify-content: center;

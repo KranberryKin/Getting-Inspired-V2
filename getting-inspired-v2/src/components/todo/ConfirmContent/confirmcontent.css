@@ -1,0 +1,9 @@
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button-class{
+    margin-left: 5px;
+}

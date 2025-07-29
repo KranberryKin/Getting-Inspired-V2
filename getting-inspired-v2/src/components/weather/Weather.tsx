@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./weather.css"
 import { convertFahrenheitToKelvin } from "../../Utils/KelvinConvertion.ts";
 import { getWeatherCode, IWeatherCode } from "../../Utils/WeatherCode.ts";
 import { kelvinToF } from "../../Utils/FarenheitConvertion.ts";
+import { kelvinToC } from "../../Utils/CelsiusConvertion.ts";
 
 interface IWeatherState {
     state_name:string;
@@ -87,18 +88,29 @@ async function _GetCityNameOffLocation(position){
 }
 
 const Weather = () => {
-const [weatherState, setWeatherState] = useState<IWeatherState>({state_name: "", forcast:"", tempature: 0})
-const _SuccessFunction  = async (position) => {
-  const cityName = await _GetCityNameOffLocation(position);
-  const forcast = await _GetForcastOffLocation(position);
-  if(cityName != "" && forcast != null){
-    setWeatherState({state_name: cityName, forcast: forcast.forcast, tempature: forcast.tempature})
-  }
-} 
+  const [weatherState, setWeatherState] = useState<IWeatherState>({state_name: "", forcast:"", tempature: 0})
+  const [isFarenheit, setIsFarenheit] = useState<boolean>(true);
+  const [isVisiable, setIsVisiable] = useState<boolean>(false);
 
-const _ErrorFunction = () => {
-  alert('It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.');
-}
+  useEffect(()  => {
+    if(!isVisiable){
+      setTimeout(() => {
+        setIsVisiable(true);
+      },500)
+    }
+  },[isVisiable])
+
+  const _SuccessFunction  = async (position) => {
+    const cityName = await _GetCityNameOffLocation(position);
+    const forcast = await _GetForcastOffLocation(position);
+    if(cityName != "" && forcast != null){
+      setWeatherState({state_name: cityName, forcast: forcast.forcast, tempature: forcast.tempature})
+    }
+  } 
+
+  const _ErrorFunction = () => {
+    alert('It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.');
+  }
 
   const getGeolocation = () => {
     if (window.navigator.geolocation) {
@@ -108,33 +120,33 @@ const _ErrorFunction = () => {
     } 
   }
 
-    return (
-        <div>
-            {
-            (weatherState.forcast === "" && weatherState.state_name === "") ?
-             <div  className="weather-container">
-                <div>
-                    To display Weather information, please enable geo-location for accurate displayed info. VPN's may alter results.
-                </div>
-                <div>
-                    <button onClick={getGeolocation}>Activate</button>
-                </div>
-             </div>
-             : 
-             <div className="weather-container">
-                <div>
-                    {weatherState.forcast}
-                </div>
-                <div>
-                    {weatherState.state_name}
-                </div>
-                <div>
-                  {kelvinToF(weatherState.tempature)} F°
-                </div>
-             </div>
-             }
-        </div>
-    )
+  return (
+      <div>
+          {
+          (weatherState.forcast === "" && weatherState.state_name === "") ?
+           <div  className={"weather-container" + (isVisiable ? " show" : "")}>
+              <div>
+                  To display Weather information, please enable geo-location for accurate displayed info. VPN's may alter results.
+              </div>
+              <div>
+                  <button onClick={getGeolocation}>Activate</button>
+              </div>
+           </div>
+           : 
+           <div className={"weather-container" + (isVisiable ? " show" : "")}>
+              <div>
+                  {weatherState.forcast}
+              </div>
+              <div>
+                  {weatherState.state_name}
+              </div>
+              <div title={isFarenheit ? "Change to C°" : "Change to F°"} className="temp-container" onClick={() => setIsFarenheit(!isFarenheit)}>
+                {isFarenheit ? kelvinToF(weatherState.tempature) + " F°" : kelvinToC(weatherState.tempature) + " C°"}
+              </div>
+           </div>
+           }
+      </div>
+  )
 }
 
 export default Weather;

@@ -7,6 +7,15 @@
     border-radius: 20px;
     font-size: 18px;
     background-color: rgba(0, 0, 0, 0.779);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+.quotes-container.show{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    animation: popIn 0.3s ease-out forwards;
 }
 
 .quotes-container:hover .author-container {
