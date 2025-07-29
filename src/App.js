@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import { PicFileLocations } from './Assets/PicFileLocations.ts'
 import SectionManager from './components/SectionManager/SectionManager.tsx';
