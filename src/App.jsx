@@ -1,10 +1,12 @@
 import './App.css';
 import { PicFileLocations } from './Assets/PicFileLocations.ts'
 import SectionManager from './components/SectionManager/SectionManager.tsx';
+import {BrowserRouter as Router} from "react-router-dom";
 
-function App() {
+
+export const App = () => {
   const randomIndex = Math.floor(Math.random() * PicFileLocations.length);
-  const selectedImage = PicFileLocations[randomIndex]
+  const selectedImage = randomIndex >= 0 ? PicFileLocations[randomIndex] : "";
 
   
   return (
@@ -18,7 +20,9 @@ function App() {
          backgroundRepeat:'no-repeat',
         }
          }>
-          <SectionManager /> 
+          <Router>
+            <SectionManager /> 
+          </Router>
       </header>
     </div>
   );
