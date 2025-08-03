@@ -20,7 +20,7 @@ export const App = () => {
          backgroundRepeat:'no-repeat',
         }
          }>
-          <Router>
+          <Router basename="/Getting-Inspired-V2">
             <SectionManager /> 
           </Router>
       </header>
