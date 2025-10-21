@@ -32,3 +32,17 @@
     justify-content: center;
     align-items: center;
 }
+@media screen and (max-width: 600px) {
+    .phone-hidden {
+        display: none;
+    }
+    .section{
+        width: 50vw;
+    }
+    .weather-section{
+        width: 100vw;
+    }
+    .quotes-section{
+        width: 100vw;
+    }
+}

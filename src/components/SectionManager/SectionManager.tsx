@@ -9,15 +9,15 @@ const SectionManager = () => {
         <Routes>
             <Route path="/*" element={
                 <div className="sectionmanager-container">
-                <div className="section"></div>
-                <div className="section"></div>
+                <div className="section phone-hidden"></div>
+                <div className="section phone-hidden"></div>
                 <div className="weather-section section"><Weather/></div>
-                <div className="section"></div>
+                <div className="section phone-hidden"></div>
                 <div className="clock-section section"><Clock /></div>
                 <div className="section"><ToDo/></div>
-                <div className="section"></div>
+                <div className="section phone-hidden"></div>
                 <div className="quotes-section section"><Quotes/></div>
-                <div className="section"></div>
+                <div className="section phone-hidden"></div>
             </div>
             } />
         </Routes>

@@ -37,14 +37,18 @@ const ToDoForm = ({closeModal}: {closeModal: () => void }) => {
         }
 
         const createToDo = async () => {
-            const toDoToCreate: IToDo = {
-                id: toDoFormData.id,
-                description: toDoFormData.descrition,
-                isCompleted: false,
+            if(toDoFormData.descrition !== ""){
+                const toDoToCreate: IToDo = {
+                    id: toDoFormData.id,
+                    description: toDoFormData.descrition,
+                    isCompleted: false,
+                }
+                await service.addTodo(toDoToCreate);
+                closeModal();
+                clearForm();
+            }else{
+                window.confirm("You need to have something ToDo to create one. (Descrition Missing)")
             }
-            await service.addTodo(toDoToCreate);
-            closeModal();
-            clearForm();
         }
 
         const updateForm = (description: string) => {
