@@ -47,7 +47,7 @@ const ToDoForm = ({closeModal}: {closeModal: () => void }) => {
                 closeModal();
                 clearForm();
             }else{
-                window.confirm("You need to have something ToDo to create one. (Descrition Missing)")
+                window.confirm("You need to have something ToDo to create one. (Description Missing)")
             }
         }
 
