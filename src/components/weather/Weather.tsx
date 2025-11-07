@@ -4,6 +4,7 @@ import { convertFahrenheitToKelvin } from "../../Utils/KelvinConvertion.ts";
 import { getWeatherCode, IWeatherCode } from "../../Utils/WeatherCode.ts";
 import { kelvinToF } from "../../Utils/FarenheitConvertion.ts";
 import { kelvinToC } from "../../Utils/CelsiusConvertion.ts";
+import Button from "../button/Button.tsx";
 
 interface IWeatherState {
     state_name:string;
@@ -11,7 +12,7 @@ interface IWeatherState {
     tempature: number;
 }
 
-async function _CreateLocationUrl(position, overload = false){
+async function _CreateLocationUrl(position:any, overload = false){
   const isLatPositive = +position.coords.latitude > 0;
   const amount = overload ? 10 : 100;
   let latMin = Math.floor(+position.coords.latitude * amount) / amount;
@@ -24,7 +25,7 @@ async function _CreateLocationUrl(position, overload = false){
   return `https://secure.geonames.org/citiesJSON?north=${isLatPositive ? latMax : latMin}&south=${isLatPositive ? latMin : latMax}&east=${isLongPositive ? longMax : longMin}&west=${isLongPositive ? longMin : longMax}&lang=en&username=kranberrykin`
 }
 
-async function _ApiCall(url){
+async function _ApiCall(url:any){
   const response = await fetch(url)
   .then(response => {
       if(!response.ok){
@@ -35,11 +36,11 @@ async function _ApiCall(url){
   return response;
 }
 
-async function _CreatForcastUrl(position){
+async function _CreatForcastUrl(position:any){
   return`https://api.open-meteo.com/v1/forecast?latitude=${+position.coords.latitude}&longitude=${+position.coords.longitude}&hourly=temperature_2m,weather_code&temperature_unit=fahrenheit&past_days=1`;
 }
 
-async function _GetCurrentForcast(todaysForcast){
+async function _GetCurrentForcast(todaysForcast:any){
   const ranges = todaysForcast.hourly;
   const timeRanges = ranges.time || [];
   const tempatureRanges = ranges.temperature_2m || [];
@@ -47,8 +48,8 @@ async function _GetCurrentForcast(todaysForcast){
   var today = new Date();
   var startDateTime = (today.getFullYear()+ '-' + ((today.getMonth() + 1).toString().length > 1 ? today.getMonth() + 1 : "0" + (today.getMonth() + 1)) + '-' + ((today.getHours() + 1) == 24 ? today.getDate() + 1 : today.getDate())) + "T" + (today.getHours().toString().length > 1 ? today.getHours() : "0" + today.getHours() )  + ":00";
   var endDateTime = (today.getFullYear()+ '-' + ((today.getMonth() + 1).toString().length > 1 ? today.getMonth() + 1 : "0" + (today.getMonth() + 1)) + '-' + ((today.getHours() + 1) == 24 ? today.getDate() + 1 : today.getDate())) + "T" + ((today.getHours() + 1).toString().length > 1 ? ((today.getHours() + 1) === 24 ? "00" : today.getHours() + 1) : "0" + (today.getHours() + 1) )  + ":00";
-  const timeIndexMin = timeRanges.findIndex(tr => tr === startDateTime)
-  const timeIndexMax = timeRanges.findIndex(tr => tr === endDateTime)
+  const timeIndexMin = timeRanges.findIndex((tr:any) => tr === startDateTime)
+  const timeIndexMax = timeRanges.findIndex((tr:any) => tr === endDateTime)
   let weather:IWeatherCode = {svg:"", name:""};
   let tempature = 0;
   if(timeIndexMax > -1 && timeIndexMin > -1 ){
@@ -61,13 +62,13 @@ async function _GetCurrentForcast(todaysForcast){
 }
 
 
-async function _GetForcastOffLocation(position){
+async function _GetForcastOffLocation(position:any){
   const forcastUrl = await _CreatForcastUrl(position);
   const todaysForcast = await _ApiCall(forcastUrl);
   const forcastNow = await _GetCurrentForcast(todaysForcast)
   return forcastNow;
 }
-async function _GetCityNameOffLocation(position){
+async function _GetCityNameOffLocation(position:any){
   let cityName = "";
   let url = await _CreateLocationUrl(position);
   let cityArrayObject = await _ApiCall(url);
@@ -100,7 +101,7 @@ const Weather = () => {
     }
   },[isVisiable])
 
-  const _SuccessFunction  = async (position) => {
+  const _SuccessFunction  = async (position:any) => {
     const cityName = await _GetCityNameOffLocation(position);
     const forcast = await _GetForcastOffLocation(position);
     if(cityName != "" && forcast != null){
@@ -128,8 +129,8 @@ const Weather = () => {
               <div>
                   To display Weather information, please enable geo-location for accurate displayed info. VPN's may alter results.
               </div>
-              <div>
-                  <button onClick={getGeolocation}>Activate</button>
+              <div className="weather-button-container">
+                <Button toggle_function={getGeolocation} button_label="Activate"/>
               </div>
            </div>
            : 

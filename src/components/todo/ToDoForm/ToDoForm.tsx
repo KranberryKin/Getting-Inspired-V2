@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { IToDo, toDoService } from "../../../Services/ToDoService.ts";
+import Button from "../../button/Button.tsx";
+import "./todoform.css"
 
 const ToDoForm = ({closeModal}: {closeModal: () => void }) => {
         const service = toDoService;
@@ -60,15 +62,13 @@ const ToDoForm = ({closeModal}: {closeModal: () => void }) => {
 
         return (
             <div className='todo-form-container'>
-                <label htmlFor="description">{"What do you need to do?"}</label>
+                <label className="todo-form-label" htmlFor="description">{"What do you need to do?"}</label>
                 <input name='description' value={toDoFormData.descrition} onChange={(e) => updateForm(e.target.value)} type="text" />
-                <div>
-                    <button onClick={clearForm}>
-                        Clear
-                    </button>
-                    <button onClick={createToDo}>
-                        Submit
-                    </button>
+                <div className="todo-form-button-container">
+                    <div className="todo-form-left-button-container">
+                        <Button toggle_function={clearForm} button_label="Clear" />
+                    </div>
+                    <Button toggle_function={createToDo} button_label="Submit"/>
                 </div>
             </div>
         )

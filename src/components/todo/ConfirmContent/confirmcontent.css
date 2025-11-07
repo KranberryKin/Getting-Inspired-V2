@@ -1,9 +1,10 @@
-.button-container{
+.confirmcontent-main-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.button-class{
-    margin-left: 5px;
+.confirmcontent-left-button{
+    padding-right: 5px;
+    padding-bottom: 5px;
 }

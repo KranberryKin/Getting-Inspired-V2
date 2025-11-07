@@ -5,6 +5,7 @@ import Modal, { IModalContent } from '../../modal/Modal.tsx';
 import './todo.css'
 import ToDoForm from '../ToDoForm/ToDoForm.tsx';
 import ConfirmContent from '../ConfirmContent/ConfirmContent.tsx';
+import Button from '../../button/Button.tsx';
 
 const ToDo = () => {
     const service = toDoService;
@@ -26,14 +27,17 @@ const ToDo = () => {
         header_content: undefined,
         body_content:undefined,
         isClosed:true,
+        close_modal_function:undefined
     })
 
     const toggleToDoForm = async () => {
         setmodalContent({
             header_content:toDoHeaderContent,
+
             body_content: <ToDoForm  closeModal={closeToDoModal}/>,
             isClosed: false,
-        })
+            close_modal_function: closeToDoModal,
+        });
         setToDos(await service.getTodos())
     }
 
@@ -42,6 +46,7 @@ const ToDo = () => {
             header_content: toDoHeaderContent,
             body_content: <ToDoForm  closeModal={toggleToDoForm}/>,
             isClosed: true,
+            close_modal_function:closeToDoModal,
         })
      }
 
@@ -54,6 +59,7 @@ const ToDo = () => {
             header_content:"Are you sure you want to Delete this ToDo?",
             body_content: <ConfirmContent onCancel={cancelDelete} onConfirm={confirmDelete}/>,
             isClosed: false,
+            close_modal_function: cancelDelete,
         })
     }
     const cancelDelete = () => {
@@ -62,6 +68,7 @@ const ToDo = () => {
             header_content:"Are you sure you want to Delete this ToDo?",
             body_content: <ConfirmContent onCancel={cancelDelete} onConfirm={confirmDelete}/>,
             isClosed: true,
+            close_modal_function: cancelDelete,
         })
     }
     useEffect(() => {
@@ -76,6 +83,7 @@ const ToDo = () => {
             header_content:"Are you sure you want to Delete this ToDo?",
             body_content: <ConfirmContent onCancel={cancelDelete} onConfirm={confirmDelete}/>,
             isClosed: true,
+            close_modal_function: cancelDelete,
         });
         setToDoToDelete("");
     }
@@ -86,14 +94,15 @@ const ToDo = () => {
              header_content={modalContent.header_content} 
              body_content={modalContent.body_content} 
              isClosed={modalContent.isClosed}
+             close_modal_function={modalContent.close_modal_function}
              />
             <div className={'todo-container' + (isVisiable ? " show" : "")}>
                 <div className='todo-header'>
-                    <div>
+                    <h4>
                         Your ToDos
-                    </div>
+                    </h4>
                     <div>
-                        <button onClick={toggleToDoForm}>Create</button>
+                        <Button toggle_function={toggleToDoForm} button_label={"Create"} />
                     </div>
                 </div>
                 <div className='todo-body'>
