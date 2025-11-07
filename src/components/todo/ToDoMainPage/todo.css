@@ -30,13 +30,35 @@
     border: #000 1px solid;
     height: 28vh;
     overflow-y: scroll;
-
     background-color: rgba(250, 235, 215, 0.874);
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(250, 235, 215, 0.874);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #957118;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c99921;
+  border-radius: 5px;
+}
+
 .modal-container{
     left:20vw;
     bottom: 80vh;
 }
+
 .todo-form-container{
     color: #000;
     display: flex;
