@@ -22,6 +22,12 @@
     transform: scale(1);
     animation: popIn 0.3s ease-out forwards;
 }
+.weather-button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+}
 
 @keyframes popIn {
   0% {

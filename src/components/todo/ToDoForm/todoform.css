@@ -1,0 +1,16 @@
+.todo-form-container{
+    display: block;
+}
+.todo-form-label{
+    padding-right: 5px;
+}
+.todo-form-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.todo-form-left-button-container{
+    padding-right: 5px;
+}
